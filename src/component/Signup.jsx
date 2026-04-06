@@ -1,7 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Signup() {
+
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    displayName: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+       "https://xgbackend.onrender.com/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      alert("Account created successfully!");
+      console.log(data);
+
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <div
       className="position-relative min-vh-100 d-flex justify-content-center align-items-center px-3"
@@ -10,7 +54,7 @@ function Signup() {
         overflow: 'hidden',
       }}
     >
-      {/* Ghost Image - partially behind the card */}
+
       <div
         className="position-absolute d-none d-md-block"
         style={{
@@ -29,63 +73,88 @@ function Signup() {
         />
       </div>
 
-      {/* Login Card - centered */}
-       <div
-  className="bg-black text-white p-4 rounded-4 shadow-lg text-center w-100"
-  style={{ maxWidth: '460px', zIndex: 2 }}
->
+      <div
+        className="bg-black text-white p-4 rounded-4 shadow-lg text-center w-100"
+        style={{ maxWidth: '460px', zIndex: 2 }}
+      >
 
         <img className="mb-2" src="/images/wwlogo.png" alt="Logo" width="55" />
         <br />
         <img className="mb-4" src="/images/join.png" alt="Login Text" width="220" />
 
-        {/* Social Icons */}
-        <div id='aa' className="d-flex justify-content-center gap-3 fs-4 mb-3">
-          <i className="fab fa-google" style={{ color: '#DB4437' }}></i>
-          <i className="fab fa-facebook" style={{ color: '#1877F2' }}></i>
-          <i id='disc' className="fab fa-discord" style={{ color: '#ffffff' }}></i>
-          <i className="fab fa-x-twitter" style={{ color: 'black' }}></i>
-        </div>
+        <form onSubmit={handleSubmit} className="text-start">
 
-        {/* Divider */}
-         <div className="d-flex align-items-center text-secondary my-3">
-          <hr className="flex-grow-1" />
-          <span className="px-2 fw-bold">OR</span>
-          <hr className="flex-grow-1" />
-        </div>
+          <div className="mb-3">
+            <label className="form-label">Username</label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="form-control bg-dark text-white border-secondary"
+              placeholder="Username"
+            />
+          </div>
 
+          <div className="mb-3">
+            <label className="form-label">Display Name</label>
+            <input
+              type="text"
+              name="displayName"
+              value={formData.displayName}
+              onChange={handleChange}
+              className="form-control bg-dark text-white border-secondary"
+              placeholder="Display Name"
+            />
+          </div>
 
-        {/* Login Form */}
-        <form className="text-start">
           <div className="mb-3">
             <label className="form-label">Email</label>
-          <input
-  type="email"
-  className="form-control bg-dark text-white border-secondary"
-  placeholder="Email"
-  style={{ color: 'white', '::placeholder': { color: 'gray' } }}
-/>
-
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="form-control bg-dark text-white border-secondary"
+              placeholder="Email"
+            />
           </div>
+
           <div className="mb-2">
             <label className="form-label">Password</label>
             <input
               type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               className="form-control bg-dark text-white border-secondary"
               placeholder="Password"
             />
           </div>
+
           <div className="text-end mb-3">
-            <Link to="#" className="small text-light text-decoration-none">Forgot your password?</Link>
+            <Link to="#" className="small text-light text-decoration-none">
+              Forgot your password?
+            </Link>
           </div>
-          <p className='dx'>By signing up you agree to out Terms and Conditions our Privacy Policy explains how much we protect our  data</p>
+
+          <p className='dx'>
+            By signing up you agree to our Terms and Conditions.
+          </p>
 
           <div className="text-center">
-            <button type="submit" className="btn btn-light w-50">Sign up</button>
+            <button type="submit" className="btn btn-light w-50">
+              Sign up
+            </button>
           </div>
+
           <p className="dx text-center mt-4 mb-0 small">
-            Already have an XG Account? <Link to="#" className="text-white text-decoration-underline fw-bold">Login</Link>
+            Already have an XG Account?{" "}
+            <Link to="/login" className="text-white text-decoration-underline fw-bold">
+              Login
+            </Link>
           </p>
+
         </form>
       </div>
     </div>

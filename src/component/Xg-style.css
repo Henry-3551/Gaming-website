@@ -130,3 +130,276 @@
     font-size: 14px;
   }
 }
+
+
+/* --- keep your original rules above; append these --- */
+
+/* Big logo animation + 3D preserve */
+.xggold-right { position: relative; min-height: 520px; }
+.big-logo {
+  width: 100%;
+  max-width: 520px;
+  object-fit: contain;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  mix-blend-mode: screen; /* sheen similar to Fnatic */
+  filter: contrast(.9) saturate(.95);
+  opacity: 0.96;
+  pointer-events: none;
+}
+
+/* soft radial glow behind logo */
+.hero-glow {
+  position: absolute;
+  right: 6%;
+  bottom: 6%;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,180,0,0.12), rgba(124,58,237,0.06) 35%, transparent 55%);
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* particles */
+.particles span{
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg,#ffd65b,#f97316);
+  opacity: .95;
+  filter: blur(.2px);
+  animation: float 6s linear infinite;
+  z-index: 2;
+}
+.particles span:nth-child(1){ left:14%; top:30%; animation-delay:0.2s }
+.particles span:nth-child(2){ left:30%; top:10%; animation-delay:0.8s }
+.particles span:nth-child(3){ left:68%; top:40%; animation-delay:1.6s }
+.particles span:nth-child(4){ left:82%; top:22%; animation-delay:0.5s }
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity:1 }
+  50% { transform: translateY(-56px) scale(.94); opacity:.7 }
+  100% { transform: translateY(0) scale(1); opacity:1 }
+}
+
+/* ensure glow and particles sit under the big-logo visually */
+.xggold-right > .big-logo { position: relative; z-index: 3; }
+.xggold-right .hero-glow { z-index: 0; }
+
+/* smaller screens adjustments */
+@media (max-width: 1024px) {
+  .xggold-right { min-height: 360px; }
+  .big-logo { max-width: 360px; }
+  .hero-glow { width: 320px; height: 320px; right: 6%; bottom: 0; filter: blur(36px); }
+}
+
+/* --- append these to your existing CSS --- */
+
+.big-logo-wrap{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.big-logo{
+  width: 100%;
+  max-width: 520px;
+  object-fit: contain;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+  filter: contrast(.95) saturate(.95);
+  opacity: 0.96;
+  pointer-events: none;
+}
+
+/* soft radial glow behind logo */
+.hero-glow {
+  position: absolute;
+  right: 6%;
+  bottom: 6%;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,180,0,0.12), rgba(124,58,237,0.06) 35%, transparent 55%);
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* particles */
+.particles span{
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg,#ffd65b,#f97316);
+  opacity: .95;
+  filter: blur(.2px);
+  animation: float 6s linear infinite;
+  z-index: 2;
+}
+.particles span:nth-child(1){ left:14%; top:30%; animation-delay:0.2s }
+.particles span:nth-child(2){ left:30%; top:10%; animation-delay:0.8s }
+.particles span:nth-child(3){ left:68%; top:40%; animation-delay:1.6s }
+.particles span:nth-child(4){ left:82%; top:22%; animation-delay:0.5s }
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity:1 }
+  50% { transform: translateY(-56px) scale(.94); opacity:.7 }
+  100% { transform: translateY(0) scale(1); opacity:1 }
+}
+
+/* ensure layering so spin looks correct */
+.xggold-right > .big-logo-wrap { z-index: 3 }
+.xggold-right .hero-glow { z-index: 0 }
+
+/* responsiveness */
+@media (max-width: 1024px) {
+  .xggold-right { min-height: 360px; }
+  .big-logo { max-width: 360px; }
+  .hero-glow { width: 320px; height: 320px; right: 6%; bottom: 0; filter: blur(36px); }
+}
+
+
+
+
+/* 3D card + flip */
+.big-logo-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.card3d {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  position: relative;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* shared face styles */
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-face img {
+  width: 100%;
+  max-width: 520px;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+/* front face */
+.card-face.front {
+  z-index: 4;
+  transform: rotateY(0deg);
+}
+
+/* back face rotated 180deg so it appears when wrapper flips */
+.card-face.back {
+  transform: rotateY(180deg);
+  z-index: 2;
+}
+
+/* simulate a believable backside if you don't have a real back-image:
+   mirror + darken + overlay for rim lighting */
+.card-face.back img {
+  transform: scaleX(-1);
+  filter: brightness(.45) saturate(.5) contrast(.9);
+  opacity: 0.98;
+}
+
+.card-face.back .back-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.55));
+  mix-blend-mode: multiply;
+  border-radius: 6px;
+}
+
+/* keep original float/glow/particle rules (repeat here if needed) */
+.big-logo {
+  /* keep in case other rules reference it */
+  pointer-events: none;
+}
+
+/* soft radial glow behind logo */
+.hero-glow {
+  position: absolute;
+  right: 6%;
+  bottom: 6%;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,180,0,0.12), rgba(124,58,237,0.06) 35%, transparent 55%);
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* particles */
+.particles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg,#ffd65b,#f97316);
+  opacity: .95;
+  filter: blur(.2px);
+  animation: float 6s linear infinite;
+  z-index: 2;
+}
+.particles span:nth-child(1){ left:14%; top:30%; animation-delay:0.2s }
+.particles span:nth-child(2){ left:30%; top:10%; animation-delay:0.8s }
+.particles span:nth-child(3){ left:68%; top:40%; animation-delay:1.6s }
+.particles span:nth-child(4){ left:82%; top:22%; animation-delay:0.5s }
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity:1 }
+  50% { transform: translateY(-56px) scale(.94); opacity:.7 }
+  100% { transform: translateY(0) scale(1); opacity:1 }
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+  .card3d { max-width: 360px; }
+  .card-face img { max-width: 360px; }
+  .hero-glow { width: 320px; height: 320px; right: 6%; bottom: 0; filter: blur(36px); }
+}
+
+
+
+
+
+
+
+
+
