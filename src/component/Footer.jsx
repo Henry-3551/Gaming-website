@@ -18,7 +18,7 @@ function Footer() {
       <div class="footer-column">
         <h4>About</h4>
         <p>
-          X-Treme Gang Esports (XG) is a rising competitive esports organization founded to discover, nurture,
+          X-Treme Gaming Esports (XG) is a rising competitive esports organization founded to discover, nurture,
           elevate and showcase gaming talent from Nigeria and beyond. We are a community-driven team, dedicated
           to creating opportunities for gamers to compete at the highest levels, develop their skills, build a
           professional career in esports and become recognized professional esports athletes.

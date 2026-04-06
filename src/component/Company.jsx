@@ -19,7 +19,7 @@ function Company() {
         </header>
 
       </div>
-      <div className='t-text-head'>Extreme Gang Esport(XG) is a rising competitive esports organisation founded to discover, nuture, elevate and showcase 
+      <div className='t-text-head'>X-Treme Gaming Esports (XG) is a rising competitive esports organisation founded to discover, nuture, elevate and showcase 
         <span>gaming talent in Nigeria and beyond</span> </div>
 
         <div className="m-t-hero"><Thero/></div>

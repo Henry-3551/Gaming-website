@@ -8,7 +8,7 @@ function News() {
                 <div className="news-headers">
                     <img src="/images/nimg1.png" alt="" /> <br /> <br />
                     <img src="/images/nimg2.png" alt="" /> <br /><br />
-                    <p>Get the latest gaming news updates, and insights from  X-Treme Gang Organisation</p> <br /><br />
+                    <p>Get the latest gaming news updates, and insights from  X-Treme Gaming Organisation</p> <br /><br />
 
                     <div className="input-group" style={{ maxWidth: '300px', width: '100%' }}>
                         <span className="input-group-text bg-dark border-secondary border-end-0 text-white">

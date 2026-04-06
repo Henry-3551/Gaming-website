@@ -5,7 +5,7 @@ const SplashOverlay = () => {
   const [fadeOut, setFadeOut] = useState(false);
   const [hide, setHide] = useState(false);
   const [typedText, setTypedText] = useState("");
-  const message = "Welcome to XtremeGang Esport";
+  const message = "Welcome to X-Treme Gaming Esports";
 
   useEffect(() => {
     let i = 0;
